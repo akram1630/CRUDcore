@@ -1,0 +1,160 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block content%}
+<!--i deleted NavBar of index.html cuz i have one in base.html-->
+
+<div class="container mb-5">
+
+  <div class="main-slider owl-single owl-carousel">
+
+    {% if last_three_posts %}
+      {% for p in last_three_posts %}
+        <div class="huge-article d-md-flex">
+      <div class="img-wrap">
+        <a href="{% url 'siteui:show' p.id %}">
+          <img src="{{p.image.url}}" alt="Image" class="img-fluid">
+        </a>
+      </div>
+      <div class="text-wrap">
+        <div class="meta`">
+          <span class="d-inline-block">{{p.created_at}}</span>
+          <span class="mx-2">&bullet;</span>
+          <span><a href="{% url 'siteui:show' p.id %}">2 Comments</a></span>
+        </div>
+        <h3><a href="{% url 'siteui:show' p.id %}">{{p.title}}</a></h3>
+        <p>{{p.description}}</p>
+        <div class="author d-flex align-items-center">
+          <div class="img mr-3">
+            <img src="{{p.image.url}}" alt="Image" class="img-fluid">
+          </div>
+          <div class="text">
+            <h3><a href="#">{{p.user}}</a></h3>
+            <strong>{{p.post_type}}</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+        <!-- item -->
+      {% endfor %}
+    {% else %}
+      <p>Sorry no pending posts</p>
+    {% endif %}
+
+  </div>
+</div>
+
+<div class="section-latest">
+  <div class="container">
+    <div class="row gutter-v1 align-items-stretch mb-5">
+          <div class="col-12">
+        <h2 class="section-title">Editorial</h2>
+      </div>
+ 
+      <div class="col-md-9 pr-md-5">
+        <div class="row">
+          {% if posts %}
+            {% for p in posts %}
+              <div class="col-12">
+            <div class="post-entry horizontal d-md-flex">
+              <div class="media">
+                <a href="{% url 'siteui:show' p.id %}">
+                  <img src="{{p.image.url}}" alt="Image" class="img-fluid"></a>
+              </div>
+              <div class="text">
+                <div class="meta">
+                  <span>{{p.created_at}}</span>
+                  <span>&bullet;</span>
+                  <span>5 mins read</span>
+                </div>
+                <h2>
+                  <a href="{% url 'siteui:show' p.id %}">{{p.title}}</a>
+                </h2>
+                <!--truncatechars:200 only 200 chars will be appeared-->
+                <p>{{p.description | truncatechars:200}}</p>
+
+              </div>
+            </div>
+          </div>
+            {% endfor %}
+          {% else %}
+              <p>Sorry no pending posts</p>
+          {% endif %}
+          
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="mb-4">
+          <a href="https://vimeo.com/342333493" data-fancybox class="video-wrap">
+            <span class="play-wrap"><span class="icon-play"></span></span>
+            <img src="images/img_h_5.jpg" alt="Image" class="img-fluid rounded">
+          </a>
+        </div>
+        <div class="floating-block sticky-top text-center">
+          <h2 class="mb-3 text-black">Subscribe to Newsletter</h2>
+          <p>Far far away behind the word mountains far from.</p>
+          <form action="#">
+            <input type="email" class="form-control mb-2" placeholder="Enter email">
+            <input type="submit" value="Subscribe" class="btn btn-primary btn-block">
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="row">
+          <div class="col-12">
+            <h2 class="section-title">Sports</h2>
+          </div>
+          {% if last_four_posts %}
+            {% for p in last_four_posts %}
+              <div class="col-md-3 col-lg-3">
+            <div class="post-entry">
+              <div class="media">
+                <a href="{% url 'siteui:show' p.id %}">
+                  <img src="{{p.image.url}}" alt="Image" class="img-fluid"></a>
+              </div>
+              <div class="text">
+                <div class="meta-cat"><a href="#">{{p.post_type}}</a></div>
+                <h2><a href="{% url 'siteui:show' p.id %}">{{p.title}}</a></h2>
+                <div class="meta">
+                  <span>{{p.created_at}}</span>
+                  <span>&bullet;</span>
+                  <span>{{p.post_type}}</span>
+                </div>
+                <!--truncatechars:200 only 200 chars will be appeared-->
+                <p>{{p.description | truncatechars:200}}</p>
+
+              </div>
+              <div class="author d-flex align-items-center">
+                <div class="img mr-3">
+                  <a href="{% url 'siteui:show' p.id %}">
+                    <img src="{{p.image.url}}" alt="Image" class="img-fluid"></a>
+                </div>
+                <div class="text">
+                  <h3><a href="{% url 'siteui:show' p.id %}">{{p.user}}</a></h3>
+                  <strong>{{p.post_type}}</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+            {% endfor %}
+          {% else %}
+            <p>Sorry no pending posts</p>
+          {% endif %}
+        </div>
+      </div>
+
+     
+
+    </div>
+  </div>
+</div>
+<!--i deleted footer of index.html cuz i have one in base.html-->
+{%endblock%}
+
+    
+
+
+    

@@ -1,0 +1,101 @@
+<!-- /*
+* Template Name: Story
+* Template Author: Untree.co
+* Tempalte URI: https://untree.co/
+* License: https://creativecommons.org/licenses/by/3.0/
+*/ -->
+
+{%extends 'base.html'%}
+{%load static%}
+{%block content%}
+
+    <div class="featured-post single-article">
+      <div class="container">
+        <div class="post-slide single-page" style="background-image: 
+          url('{{post.image.url}}');">
+          <div class="text-wrap pb-5">
+            <div class="share">
+              <ul class="list-unstyled">
+                <li><a href="#"><span class="icon-facebook"></span></a></li>
+                <li><a href="#"><span class="icon-twitter"></span></a></li>
+                <li><a href="#"><span class="icon-pinterest"></span></a></li>
+              </ul>
+            </div>
+            <h2 class="text-black">{{post.title}}</h2>
+            <div class="meta">
+              <span>{{post.created_at}}</span>
+              <span>&bullet;</span>
+              <span>{{post.post_type}}</span>
+            </div>
+          </div>
+        </div> <!-- .post-slide -->
+
+      </div>
+    </div>
+
+
+    <div class="container article">
+      <div class="row justify-content-center align-items-stretch">
+
+        <article class="col-lg-8 order-lg-2 px-lg-5">
+          <p>{{post.description}}</p>
+
+          <div class="pt-5 categories_tags ">
+                <p>Categories:  {{post.post_type}}</p>
+          </div>
+              <div class="post-single-navigation d-flex align-items-stretch">
+                {% if post.get_previous_by_created_at %}
+                <!-- created by django :  "get_next_by_"
+                post.get_next_by_created_at.id -->
+                <a href="{% url 'siteui:show' post.get_previous_by_created_at.id %}" class="mr-auto w-50 pr-4">
+                  <span class="d-block">Previous Post</span>
+                  {{post.title}}
+                </a>
+                {% endif %}
+                {% if post.get_next_by_created_at %}
+                <a href="{% url 'siteui:show' post.get_next_by_created_at.id %}" class="ml-auto w-50 text-right pl-4">
+                  <span class="d-block">Next Post</span>
+                    {{post.title}}                
+                </a>
+                 {% endif %}
+              </div>
+
+
+
+        </article>
+
+        <div class="col-md-12 col-lg-1 order-lg-1">
+          <div class="share sticky-top">
+            <h3>Share</h3>
+            <ul class="list-unstyled share-article">
+              <li><a href="#"><span class="icon-facebook"></span></a></li>
+              <li><a href="#"><span class="icon-twitter"></span></a></li>
+              <li><a href="#"><span class="icon-pinterest"></span></a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-3 mb-5 mb-lg-0 order-lg-3">
+
+          <div class="mb-4">
+            <a href="https://vimeo.com/342333493" data-fancybox class="video-wrap">
+              <span class="play-wrap"><span class="icon-play"></span></span>
+              <img src="{{post.image.url}}" alt="Image" class="img-fluid rounded">
+            </a>
+          </div>  
+
+          <div class="share floating-block sticky-top">
+
+              <h2 class="mb-3 text-black">Subscribe to Newsletter</h2>
+              <p>Far far away behind the word mountains far from.</p>
+              <form action="#">
+                <input type="email" class="form-control mb-2" placeholder="Enter email">
+                <input type="submit" value="Subscribe" class="btn btn-primary btn-block">
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{%endblock%}
+
+    

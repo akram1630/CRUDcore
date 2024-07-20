@@ -1,0 +1,8 @@
+<h1>FORM</h1>
+<br>
+<!--enctype to let show images-->
+<form method="post" enctype='multipart/form-data'>
+  {% csrf_token %}
+  {{form.as_p}}
+  <input type="submit" class="btn btn-outline">
+</form>
